@@ -2,7 +2,7 @@
 	// состояние JSON http://192.168.0.15/lexx/myHome/php/laurent.php?ip=192.168.0.101
 	// управление http://192.168.0.15/lexx/myHome/php/laurent.php?ip=192.168.0.101&out=4&st=off
 
-if ( getallheaders()["Authorization"] != 'Bearer 123') {
+if (getallheaders()["Authorization"] != 'Bearer 123') {
   http_response_code(404);
   exit;
 }
