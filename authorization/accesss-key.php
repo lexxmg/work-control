@@ -4,7 +4,7 @@ $accessKeys = [
     [
       'id' => 1,
       'user' => 'lexx',
-      'key' => '1231'
+      'key' => '123'
     ],
     [
       'id' => 2,
