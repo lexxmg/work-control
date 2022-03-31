@@ -2,11 +2,17 @@
 
 $key = htmlspecialchars($_POST['key'] ?? '');
 $pathReguest = $_SERVER['DOCUMENT_ROOT'] . '/authorization/reguest.json';
+$pathAccessKey = $_SERVER['DOCUMENT_ROOT'] . '/authorization/accesss-key.json';
 
 $reguestArr = [];
+$arrAccessKey = [];
 
 if ( json_decode(file_get_contents($pathReguest), true) ) {
     $reguestArr = json_decode(file_get_contents($pathReguest), true);
+}
+
+if ( json_decode(file_get_contents($pathAccessKey), true) ) {
+    $arrAccessKey = json_decode(file_get_contents($pathAccessKey), true);
 }
 
 if ( isset($_POST['submitKey']) ) {
@@ -19,4 +25,3 @@ if ( isset($_POST['submitKey']) ) {
 
 require $_SERVER['DOCUMENT_ROOT'] . '/src/config.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/src/functions.php';
-require $_SERVER['DOCUMENT_ROOT'] . '/authorization/accesss-key.php';

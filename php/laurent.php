@@ -6,12 +6,17 @@
 //   http_response_code(404);
 //   exit;
 // }
-require $_SERVER['DOCUMENT_ROOT'] . '/authorization/accesss-key.php';
+$pathAccessKey = $_SERVER['DOCUMENT_ROOT'] . '/authorization/accesss-key.json';
 
 $key = $_COOKIE['key'] ?? '';
 $access = false;
+$arrAccessKey = [];
 
-foreach ($accessKeys as $i => $value) {
+if ( json_decode(file_get_contents($pathAccessKey), true) ) {
+    $arrAccessKey = json_decode(file_get_contents($pathAccessKey), true);
+}
+
+foreach ($arrAccessKey as $i => $value) {
     if ($value['key'] == $key) {
         $access = true;
         break;

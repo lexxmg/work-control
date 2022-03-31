@@ -5,7 +5,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
 $key = $_COOKIE['key'] ?? '';
 $access = false;
 
-foreach ($accessKeys as $i => $value) {
+foreach ($arrAccessKey as $i => $value) {
     if ($value['key'] == $key) {
         $access = true;
         break;
