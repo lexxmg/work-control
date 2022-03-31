@@ -10,10 +10,10 @@
 
     <title>work-control</title>
 
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/master.css">
 
-    <script src="js/script.js" defer></script>
+    <script src="/js/script.js" defer></script>
   </head>
 
   <body>

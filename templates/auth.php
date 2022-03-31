@@ -1,3 +1,9 @@
 <div class="auth">
-    <h1>тут будет форма</h1>
+  <form class="auth-form" action="" method="post">
+    <label for="" class="auth-form__label"> key:
+      <input class="auth-form__input" type="text" name="key">
+    </label>
+
+    <button class="auth-form__btn" name="submitKey">Отправить</button>
+  </form>
 </div>

@@ -1,15 +1,24 @@
 
-<?php require($_SERVER['DOCUMENT_ROOT'] . '/templates/header.php') ?>
-
 <?php
-if (getallheaders()["Authorization"] != 'Bearer 123') {
+require($_SERVER['DOCUMENT_ROOT'] . '/templates/header.php');
+
+$key = $_COOKIE['key'] ?? '';
+$access = false;
+
+foreach ($accessKeys as $i => $value) {
+    if ($value['key'] == $key) {
+        $access = true;
+        break;
+    }
+}
+
+if ($access) {
+    require $_SERVER['DOCUMENT_ROOT'] . '/templates/control.php';
+} else {
+    setcookie("key", $key, 1, '/');
+
     header("Location: /route/auth");
     exit;
 }
-?>
 
-<div class="content-control">
-  <button class="content-control__btn">on/off</button>
-</div>
-
-<?php require($_SERVER['DOCUMENT_ROOT'] . '/templates/footer.php') ?>
+require($_SERVER['DOCUMENT_ROOT'] . '/templates/footer.php');

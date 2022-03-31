@@ -18,7 +18,7 @@ fetch('/php/laurent.php?ip=' + IP, {
   .then(data => console.log(data.out_table0));
 
 btn.addEventListener('click', () => {
-  fetch('/php/laurent.php?ip=' + IP + '&out=3&st=toggle', {
+  fetch('/php/laurent.php?ip=' + IP + '&out=5&st=toggle', {
         method: 'get',
         headers: {
             'Accept': 'application/json, text/plain, */*',
