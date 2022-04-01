@@ -4,6 +4,9 @@
       <input class="auth-form__input" type="text" name="key">
     </label>
 
-    <button class="auth-form__btn" name="submitKey">Отправить</button>
+    <button class="auth-form__btn btn" name="submitKey">Отправить</button>
   </form>
+
+
+  <button class="auth__btn btn">Обновить</button>
 </div>
