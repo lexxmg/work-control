@@ -2,10 +2,14 @@
 'use strict';
 
 const IP = '192.168.0.101'//'185.35.160.110:8101';
-const OUT_ARR = [1, 2, 3 , 5, 9];
+//const OUT_ARR = [1, 2, 3 , 5, 9];
 
 if (window.location.pathname === '/') {
   const container = document.querySelector('.content-control');
+
+  const OUT_ARR = container.dataset.out.split(',').map(item => {
+    return item.trim();
+  });
 
   addBtnToContainer(container, OUT_ARR);
   isActive(IP);

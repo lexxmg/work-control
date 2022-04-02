@@ -12,6 +12,7 @@ if ($_SERVER['REMOTE_ADDR'] == ACCESS_IP) {
 if (isset($_POST['addKey'])) {
     $arrAccessKey[] = [
         'id' => uniqid($_POST['user']),
+        'out' => $_POST['out'],
         'user' => $_POST['user'],
         'key' => $_POST['key']
     ];
@@ -53,6 +54,10 @@ if (isset($_POST['reject'])) {
             <input class="form-admin__input" type="text" name="user">
         </label>
 
+        <label for="" class="form-admin__label">OUT через запятую:
+            <input class="form-admin__input" type="text" name="out">
+        </label>
+
         <label for="" class="form-admin__label">key:
             <input class="form-admin__input" type="text" name="key" value="<?=$value['key']?>">
         </label>
@@ -71,6 +76,10 @@ if (isset($_POST['reject'])) {
 
         <label for="" class="form-admin__label">Имя:
             <input class="form-admin__input" type="text" name="user" value="<?=$value['user']?>">
+        </label>
+
+        <label for="" class="form-admin__label">OUT:
+            <input class="form-admin__input" type="text" name="user" value="<?=$value['out']?>">
         </label>
 
         <label for="" class="form-admin__label">key:
