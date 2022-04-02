@@ -60,7 +60,7 @@
   background-color: green;
 }
 
-@media (max-width: 522px) {
+@media (max-width: 720px) {
   .content-control--many {
     padding: 10px;
   }
