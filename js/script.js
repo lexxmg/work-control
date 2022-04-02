@@ -11,7 +11,10 @@ if (window.location.pathname === '/') {
     return item.trim();
   });
 
-  addBtnToContainer(container, OUT_ARR);
+  const OUT_NAME = JSON.parse(container.dataset.outName);
+  console.log(OUT_NAME[1]);
+
+  addBtnToContainer(container, OUT_ARR, OUT_NAME);
   isActive(IP);
 
   setInterval(() => {
@@ -39,11 +42,15 @@ if (window.location.pathname === '/route/auth/') {
 }
 
 
-function addBtnToContainer(container, outArr) {
+function addBtnToContainer(container, outArr, outName) {
   if (outArr.length <= 1) {
     outArr.forEach((item, i) => {
       container.insertAdjacentHTML('beforeend' , `
-        <button class="content-control__btn btn-control" data-out="${item}">on/off out-${item}</button>
+        <div class="content-control__btn-container">
+          <button class="content-control__btn btn-control" data-out="${item}">on/off</button>
+
+          <span class="content-control__text">${outName[item]}</span>
+        </div>
       `);
     });
   } else {
@@ -51,7 +58,11 @@ function addBtnToContainer(container, outArr) {
 
     outArr.forEach((item, i) => {
       container.insertAdjacentHTML('beforeend' , `
-        <button class="content-control__btn btn-control content-control__btn--many" data-out="${item}">on/off out-${item}</button>
+        <div class="content-control__btn-container content-control__btn-container--many">
+          <button class="content-control__btn btn-control" data-out="${item}">on/off</button>
+
+          <span class="content-control__text">${outName[item]}</span>
+        </div>
       `);
     });
   }

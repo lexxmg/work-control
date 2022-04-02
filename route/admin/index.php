@@ -17,7 +17,7 @@ if (isset($_POST['addKey'])) {
         'key' => $_POST['key']
     ];
 
-    file_put_contents( $pathAccessKey, json_encode($arrAccessKey) );
+    file_put_contents( $pathAccessKey, json_encode($arrAccessKey, JSON_UNESCAPED_UNICODE) );
     file_put_contents( $pathReguest, null );
     $reguestArr = [];
 }
