@@ -47,7 +47,7 @@ function addBtnToContainer(container, outArr, outName) {
     outArr.forEach((item, i) => {
       container.insertAdjacentHTML('beforeend' , `
         <div class="content-control__btn-container">
-          <button class="content-control__btn btn-control" data-out="${item}">on/off</button>
+          <button class="content-control__btn btn-control" data-out="${item}"></button>
 
           <span class="content-control__text">${outName[item]}</span>
         </div>
@@ -59,7 +59,7 @@ function addBtnToContainer(container, outArr, outName) {
     outArr.forEach((item, i) => {
       container.insertAdjacentHTML('beforeend' , `
         <div class="content-control__btn-container content-control__btn-container--many">
-          <button class="content-control__btn btn-control" data-out="${item}">on/off</button>
+          <button class="content-control__btn btn-control" data-out="${item}"></button>
 
           <span class="content-control__text">${outName[item]}</span>
         </div>
@@ -81,8 +81,10 @@ function isActive(ip) {
           if (i === btn.dataset.out - 1) {
             if (item == 1) {
               btn.classList.add('content-control__btn--active');
+              btn.textContent = 'on';
             } else {
               btn.classList.remove('content-control__btn--active');
+              btn.textContent = 'off';
             }
           }
         });
