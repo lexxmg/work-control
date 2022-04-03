@@ -79,7 +79,7 @@ function isActive(ip, outName) {
       outActive.forEach((item, i) => {
         allBtn.forEach((btn, j) => {
           if (i === btn.dataset.out - 1) {
-            if (item == outName[j + 1].rev ? 0 : 1) {
+            if (item == outName[i + 1].rev ? 0 : 1) {
               btn.classList.add('content-control__btn--active');
               btn.textContent = 'on';
             } else {

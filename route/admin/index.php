@@ -3,7 +3,7 @@
 require $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
 
 if ($_SERVER['REMOTE_ADDR'] == ACCESS_IP) {
-    echo 'доступ разрешон';
+    //echo 'доступ разрешон';
 } else {
     header("Location: /route/auth");
     exit;
@@ -30,7 +30,7 @@ if (isset($_POST['deleteKey'])) {
         }
     }
 
-    file_put_contents( $pathAccessKey, json_encode(array_values($arrAccessKey)) );
+    file_put_contents( $pathAccessKey, json_encode(array_values($arrAccessKey), JSON_UNESCAPED_UNICODE) );
 }
 
 if (isset($_POST['reject'])) {
@@ -41,10 +41,50 @@ if (isset($_POST['reject'])) {
         }
     }
 
-    file_put_contents( $pathReguest, json_encode(array_values($reguestArr)) );
+    file_put_contents( $pathReguest, json_encode(array_values($reguestArr), JSON_UNESCAPED_UNICODE) );
+}
+
+if (isset($_POST['editKeyName'])) {
+    $post = $_POST;
+    $keyName = [];
+
+    foreach ($post as $key => $value) {
+        if (is_array($value)) {
+            $arr = array_values($value);
+        }
+
+        $keyName[$arr[0]] = [
+            'name' => $arr[1],
+            'rev' => isset($arr[2])
+        ];
+    }
+    file_put_contents( $pathOutName, json_encode($keyName, JSON_UNESCAPED_UNICODE) );
+    $outName = json_decode(file_get_contents($pathOutName), true);
 }
 
 ?>
+
+<h2 class="admin-subtitle">Название выходов</h2>
+
+<form class="admin__form-out-name admin-form-out-name" method="post">
+    <?php foreach ($outName as $key => $value): ?>
+        <div class="admin-form-out-name__container">
+            <label class="admin-form-out-name__label">OUT-<?=$key?>:
+                <input class="admin-form-out-name__input"  type="text" name="<?=$key?>['key']" value="<?=$key?>" hidden>
+            </label>
+
+            <label class="admin-form-out-name__label">Название:
+                <input class="admin-form-out-name__input"  type="text" name="<?=$key?>['name']" value="<?=$value['name']?>">
+            </label>
+
+            <label class="admin-form-out-name__label">Реверс:
+                <input class="admin-form-out-name__input"  type="checkbox" name="<?=$key?>['rev']" <?=$value['rev'] ? 'checked' : ''?>>
+            </label>
+        </div>
+    <?php endforeach; ?>
+
+    <button class="admin-form-out-name__btn" name="editKeyName">Изменить</button>
+</form>
 
 <h2 class="admin-subtitle">Запрос на добавление</h2>
 
