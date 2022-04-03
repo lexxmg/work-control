@@ -12,13 +12,13 @@ if (window.location.pathname === '/') {
   });
 
   const OUT_NAME = JSON.parse(container.dataset.outName);
-  console.log(OUT_NAME[1]);
+
 
   addBtnToContainer(container, OUT_ARR, OUT_NAME);
-  isActive(IP);
+  isActive(IP, OUT_NAME);
 
   setInterval(() => {
-    isActive(IP);
+    isActive(IP, OUT_NAME);
   }, 1000);
 
   container.addEventListener('click' , event => {
@@ -28,7 +28,7 @@ if (window.location.pathname === '/') {
       .then(res => res.text())
       .then(data => {
         console.log(data);
-        isActive(IP);
+        isActive(IP, OUT_NAME);
       })
   });
 }
@@ -49,7 +49,7 @@ function addBtnToContainer(container, outArr, outName) {
         <div class="content-control__btn-container">
           <button class="content-control__btn btn-control" data-out="${item}"></button>
 
-          <span class="content-control__text">${outName[item]}</span>
+          <span class="content-control__text">${outName[item].name}</span>
         </div>
       `);
     });
@@ -61,14 +61,14 @@ function addBtnToContainer(container, outArr, outName) {
         <div class="content-control__btn-container content-control__btn-container--many">
           <button class="content-control__btn btn-control" data-out="${item}"></button>
 
-          <span class="content-control__text">${outName[item]}</span>
+          <span class="content-control__text">${outName[item].name}</span>
         </div>
       `);
     });
   }
 }
 
-function isActive(ip) {
+function isActive(ip, outName) {
   const allBtn = document.querySelectorAll('.content-control__btn');
 
   fetch(`/php/laurent.php?ip=${ip}`)
@@ -79,7 +79,7 @@ function isActive(ip) {
       outActive.forEach((item, i) => {
         allBtn.forEach((btn, j) => {
           if (i === btn.dataset.out - 1) {
-            if (item == 1) {
+            if (item == outName[j + 1].rev ? 0 : 1) {
               btn.classList.add('content-control__btn--active');
               btn.textContent = 'on';
             } else {

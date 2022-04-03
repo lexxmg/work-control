@@ -7,18 +7,54 @@ $reguestArr = [];
 $arrAccessKey = [];
 
 $outName = [
-    '1' => 'out-1',
-    '2' => 'out-2',
-    '3' => 'out-3',
-    '4' => 'Свет право-4',
-    '5' => 'out-5',
-    '6' => 'Свет под кроватью -6',
-    '7' => 'out-7',
-    '8' => 'out-8',
-    '9' => 'Цветы-9',
-    '10' => 'out-10',
-    '11' => 'out-11',
-    '12' => 'out-12',
+    '1' => [
+        'name' => 'out-1',
+        'rev' => false
+    ],
+    '2' => [
+        'name' => 'out-2',
+        'rev' => false
+    ],
+    '3' => [
+        'name' => 'out-3',
+        'rev' => false
+    ],
+    '4' => [
+        'name' => 'Свет право-4',
+        'rev' => false
+    ],
+    '5' => [
+        'name' => 'out-5',
+        'rev' => false
+    ],
+    '6' => [
+        'name' => 'Свет под кроватью -6',
+        'rev' => false
+    ],
+    '7' => [
+        'name' => 'out-7',
+        'rev' => false
+    ],
+    '8' => [
+        'name' => 'out-8',
+        'rev' => false
+    ],
+    '9' => [
+        'name' => 'Цветы-9',
+        'rev' => false
+    ],
+    '10' => [
+        'name' => 'out-10',
+        'rev' => false
+    ],
+    '11' => [
+        'name' => 'out-11',
+        'rev' => false
+    ],
+    '12' => [
+        'name' => 'out-12',
+        'rev' => false
+    ]
 ];
 
 $key = explode(':', htmlspecialchars($_POST['key'] ?? ''));
