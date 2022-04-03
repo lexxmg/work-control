@@ -6,7 +6,56 @@ $pathOutName = $_SERVER['DOCUMENT_ROOT'] . '/authorization/out-name.json';
 
 $reguestArr = [];
 $arrAccessKey = [];
-$outName = [];
+$outName = [
+    '1' => [
+        'name' => 'out-1',
+        'rev' => false
+    ],
+    '2' => [
+        'name' => 'out-2',
+        'rev' => false
+    ],
+    '3' => [
+        'name' => 'out-3',
+        'rev' => false
+    ],
+    '4' => [
+        'name' => 'out-4',
+        'rev' => false
+    ],
+    '5' => [
+        'name' => 'out-5',
+        'rev' => false
+    ],
+    '6' => [
+        'name' => 'out-6',
+        'rev' => false
+    ],
+    '7' => [
+        'name' => 'out-7',
+        'rev' => false
+    ],
+    '8' => [
+        'name' => 'out-8',
+        'rev' => false
+    ],
+    '9' => [
+        'name' => 'out-9',
+        'rev' => false
+    ],
+    '10' => [
+        'name' => 'out-10',
+        'rev' => false
+    ],
+    '11' => [
+        'name' => 'out-11',
+        'rev' => false
+    ],
+    '12' => [
+        'name' => 'out-12',
+        'rev' => false
+    ]
+];
 
 $key = explode(':', htmlspecialchars($_POST['key'] ?? ''));
 
