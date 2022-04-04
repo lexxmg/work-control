@@ -2,15 +2,15 @@
 
 require $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
 
-$key = $_COOKIE['key'] ?? '';
-$access = false;
-
-foreach ($arrAccessKey as $i => $value) {
-    if ($value['key'] == $key) {
-        $access = true;
-        break;
-    }
-}
+// $key = $_COOKIE['key'] ?? '';
+// $access = false;
+//
+// foreach ($arrAccessKey as $i => $value) {
+//     if ($value['key'] == $key) {
+//         $access = true;
+//         break;
+//     }
+// }
 
 if ($access) {
     header("Location: /");

@@ -1,16 +1,17 @@
 <?php
 
+$keyCookie = $_COOKIE['key'] ?? '';
+$access = false;
+$first = false;
+$admin = false;
+$out = '';
+
 $pathReguest = $_SERVER['DOCUMENT_ROOT'] . '/authorization/reguest.json';
 $pathAccessKey = $_SERVER['DOCUMENT_ROOT'] . '/authorization/accesss-key.json';
 $pathOutName = $_SERVER['DOCUMENT_ROOT'] . '/authorization/out-name.json';
 
 $reguestArr = [];
-$arrAccessKey = [
-    'id' => '1',
-    'out' => '1,2,3,4,5,6,7,8,9,10,11,12',
-    'user' => 'admin',
-    'key' => 'admin:admin'
-];
+$arrAccessKey = [];
 $outName = [
     '1' => [
         'name' => 'out-1',
@@ -83,6 +84,17 @@ if ( isset($_POST['submitKey']) && count($key) == 2 && $key[0] == 'key' && $key[
     $reguestArr[] = ['date'=> date('d.m.Y H:i:s'), 'key'=> $key[1]];
 
     file_put_contents( $pathReguest, json_encode($reguestArr, JSON_UNESCAPED_UNICODE) );
+}
+
+
+foreach ($arrAccessKey as $i => $value) {
+    if ($value['key'] == $keyCookie) {
+        $access = true;
+        $first = $value['first'];
+        $admin = $value['admin'];
+        $out = $value['out'];
+        break;
+    }
 }
 
 require $_SERVER['DOCUMENT_ROOT'] . '/src/config.php';

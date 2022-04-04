@@ -2,7 +2,10 @@
 
 require $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
 
-if ($_SERVER['REMOTE_ADDR'] == ACCESS_IP) {
+var_dump($first);
+var_dump($admin);
+
+if ( empty($arrAccessKey) || $first || $admin || true) {
     //echo 'доступ разрешон';
 } else {
     header("Location: /route/auth");
@@ -14,7 +17,9 @@ if (isset($_POST['addKey'])) {
         'id' => uniqid($_POST['user']),
         'out' => $_POST['out'],
         'user' => $_POST['user'],
-        'key' => $_POST['key']
+        'key' => $_POST['key'],
+        'admin' => false,
+        'first' => empty($arrAccessKey)
     ];
 
     file_put_contents( $pathAccessKey, json_encode($arrAccessKey, JSON_UNESCAPED_UNICODE) );
@@ -123,10 +128,22 @@ if (isset($_POST['editKeyName'])) {
         </label>
 
         <label for="" class="form-admin__label">key:
-            <input class="form-admin__input" type="text" name="key" value="<?=$value['key']?>">
+            <input class="form-admin__input"
+                type="<?=$first || !$value['first'] ? 'text' : 'password'?>" 
+                name="key"
+                value="<?=$value['key']?>
+            ">
         </label>
 
-        <button class="form-admin__btn" name="deleteKey">удалить</button>
+        <?php if ($value['first']): ?>
+            <span class="form-admin__text">master</span>
+        <?php else: ?>
+            <label for="" class="form-admin__label">admin:
+                <input class="form-admin__input" type="checkbox" name="admin">
+            </label>
+
+            <button class="form-admin__btn" name="deleteKey">удалить</button>
+        <?php endif; ?>
     </form>
 <?php endforeach; ?>
 
