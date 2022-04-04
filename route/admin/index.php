@@ -5,7 +5,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
 var_dump($first);
 var_dump($admin);
 
-if ( empty($arrAccessKey) || $first || $admin || true) {
+if ( empty($arrAccessKey) || $first || $admin) {
     //echo 'доступ разрешон';
 } else {
     header("Location: /route/auth");
@@ -129,7 +129,7 @@ if (isset($_POST['editKeyName'])) {
 
         <label for="" class="form-admin__label">key:
             <input class="form-admin__input"
-                type="<?=$first || !$value['first'] ? 'text' : 'password'?>" 
+                type="<?=$first || !$value['first'] ? 'text' : 'password'?>"
                 name="key"
                 value="<?=$value['key']?>
             ">
