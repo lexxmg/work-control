@@ -5,7 +5,12 @@ $pathAccessKey = $_SERVER['DOCUMENT_ROOT'] . '/authorization/accesss-key.json';
 $pathOutName = $_SERVER['DOCUMENT_ROOT'] . '/authorization/out-name.json';
 
 $reguestArr = [];
-$arrAccessKey = [];
+$arrAccessKey = [
+    'id' => '1',
+    'out' => '1,2,3,4,5,6,7,8,9,10,11,12',
+    'user' => 'admin',
+    'key' => 'admin:admin'
+];
 $outName = [
     '1' => [
         'name' => 'out-1',
