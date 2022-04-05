@@ -162,7 +162,9 @@ if (isset($_POST['editKeyName'])) {
             <button class="form-admin__btn" name="deleteKey">удалить</button>
         <?php endif; ?>
 
-        <button class="form-admin__btn" name="editKey">изменить</button>
+        <?php if ($first || !$value['first']): ?>
+            <button class="form-admin__btn" name="editKey">изменить</button>
+        <?php endif; ?>
     </form>
 <?php endforeach; ?>
 
