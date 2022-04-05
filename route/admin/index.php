@@ -85,21 +85,31 @@ if (isset($_POST['editKeyName'])) {
 <h2 class="admin-subtitle">Название выходов</h2>
 
 <form class="admin__form-out-name admin-form-out-name" method="post">
-    <?php foreach ($outName as $key => $value): ?>
-        <div class="admin-form-out-name__container">
-            <label class="admin-form-out-name__label">OUT-<?=$key?>:
-                <input class="admin-form-out-name__input"  type="text" name="<?=$key?>['key']" value="<?=$key?>" hidden>
-            </label>
+    <table class="admin-form-out-name__table admin-form-out-name-table">
+        <tr class="admin-form-out-name-table__tr">
+            <th class="admin-form-out-name-table__th">Выход</th>
+            <th class="admin-form-out-name-table__th">Имя кнопки</th>
+            <th class="admin-form-out-name-table__th">Реверс</th>
+        </tr>
 
-            <label class="admin-form-out-name__label">Название:
-                <input class="admin-form-out-name__input"  type="text" name="<?=$key?>['name']" value="<?=$value['name']?>">
-            </label>
+        <?php foreach ($outName as $key => $value): ?>
+            <tr class="admin-form-out-name-table__tr">
+                <td class="admin-form-out-name-table__td">
+                    <label class="admin-form-out-name__label">OUT-<?=$key?>:
+                        <input class="admin-form-out-name__input"  type="text" name="<?=$key?>['key']" value="<?=$key?>" hidden>
+                    </label>
+                </td>
 
-            <label class="admin-form-out-name__label">Реверс:
-                <input class="admin-form-out-name__input"  type="checkbox" name="<?=$key?>['rev']" <?=$value['rev'] ? 'checked' : ''?>>
-            </label>
-        </div>
-    <?php endforeach; ?>
+                <td class="admin-form-out-name-table__td">
+                    <input class="admin-form-out-name__input"  type="text" name="<?=$key?>['name']" value="<?=$value['name']?>">
+                </td>
+
+                <td class="admin-form-out-name-table__td">
+                    <input class="admin-form-out-name__input"  type="checkbox" name="<?=$key?>['rev']" <?=$value['rev'] ? 'checked' : ''?>>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
 
     <button class="admin-form-out-name__btn" name="editKeyName">Изменить</button>
 </form>
@@ -129,43 +139,60 @@ if (isset($_POST['editKeyName'])) {
 <h2 class="admin-subtitle">Доступ разрешон</h2>
 
 <?php foreach ($arrAccessKey as $key => $value): ?>
-    <form class="form-admin" method="post">
-        <input hidden type="text" name="id" value="<?=$value['id']?>">
+    <div class="admin-access-card">
+        <div class="admin-access-card__top">
+            <h3 class="admin-access-card__title"><?=$value['user']?></h3>
 
-        <label for="" class="form-admin__label">Имя:
-            <input class="form-admin__input" type="text" name="user" value="<?=$value['user']?>">
-        </label>
+            <div class="admin-access-card__top-btn-container admin-access-card-top-btn-container">
+                <button class="admin-access-card-top-btn-container__btn">x</button>
+            </div>
+        </div>
 
-        <label for="" class="form-admin__label">OUT:
-            <input class="form-admin__input" type="text" name="out" value="<?=$value['out']?>">
-        </label>
+        <div class="admin-access-card__body">
+            <form class="form-admin" method="post">
+                <input hidden type="text" name="id" value="<?=$value['id']?>">
 
-        <label for="" class="form-admin__label">key:
-            <input class="form-admin__input"
-                type="<?=$first || !$value['first'] ? 'text' : 'password'?>"
-                name="key"
-                value="<?=$value['key']?>
-            ">
-        </label>
+                <label for="" class="form-admin__label">Имя:
+                    <input class="form-admin__input" type="text" name="user" value="<?=$value['user']?>">
+                </label>
 
-        <?php if ($value['first']): ?>
-            <span class="form-admin__text">master</span>
-        <?php else: ?>
-            <label for="" class="form-admin__label">admin:
-                <input class="form-admin__input"
-                    type="checkbox"
-                    name="admin"
-                    <?=$value['admin'] ? "checked" : ""?>
-                >
-            </label>
+                <label for="" class="form-admin__label">OUT:
+                    <input class="form-admin__input" type="text" name="out" value="<?=$value['out']?>">
+                </label>
 
-            <button class="form-admin__btn" name="deleteKey">удалить</button>
-        <?php endif; ?>
+                <label for="" class="form-admin__label">key:
+                    <input class="form-admin__input"
+                        type="<?=$first || !$value['first'] ? 'text' : 'password'?>"
+                        name="key"
+                        value="<?=$value['key']?>
+                    ">
+                </label>
 
-        <?php if ($first || !$value['first']): ?>
-            <button class="form-admin__btn" name="editKey">изменить</button>
-        <?php endif; ?>
-    </form>
+
+                <?php if ($value['first']): ?>
+                    <span class="form-admin__text">master</span>
+                <?php else: ?>
+                    <label class="form-admin__label">admin:
+                        <input class="form-admin__input"
+                            type="checkbox"
+                            name="admin"
+                            <?=$value['admin'] ? "checked" : ""?>
+                        >
+                    </label>
+                <?php endif; ?>
+
+                <div class="form-admin__btn-container">
+                    <?php if (!$value['first']): ?>
+                        <button class="form-admin__btn" name="deleteKey">удалить</button>
+                    <?php endif; ?>
+
+                    <?php if ($first || !$value['first']): ?>
+                        <button class="form-admin__btn" name="editKey">изменить</button>
+                    <?php endif; ?>
+                </div>
+            </form>
+        </div>
+    </div>
 <?php endforeach; ?>
 
 <? require $_SERVER['DOCUMENT_ROOT'] . '/templates/footer.php'?>
