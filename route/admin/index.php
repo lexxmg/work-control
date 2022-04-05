@@ -2,9 +2,6 @@
 
 require $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
 
-var_dump($first);
-var_dump($admin);
-
 if ( empty($arrAccessKey) || $first || $admin) {
     //echo 'доступ разрешон';
 } else {
@@ -31,6 +28,21 @@ if (isset($_POST['deleteKey'])) {
     foreach ($arrAccessKey as $key => $value) {
         if ($value['id'] == $_POST['id']) {
             unset($arrAccessKey[$key]);
+            break;
+        }
+    }
+
+    file_put_contents( $pathAccessKey, json_encode(array_values($arrAccessKey), JSON_UNESCAPED_UNICODE) );
+}
+
+if (isset($_POST['editKey'])) {
+    $out = $_POST['out'];
+    $admin = isset($_POST['admin']);
+
+    foreach ($arrAccessKey as $key => $value) {
+        if ($value['id'] == $_POST['id']) {
+            $arrAccessKey[$key]['out'] = $out;
+            $arrAccessKey[$key]['admin'] = $admin;
             break;
         }
     }
@@ -68,6 +80,7 @@ if (isset($_POST['editKeyName'])) {
 }
 
 ?>
+<a href="/" class="admin__link">Главная</a>
 
 <h2 class="admin-subtitle">Название выходов</h2>
 
@@ -124,7 +137,7 @@ if (isset($_POST['editKeyName'])) {
         </label>
 
         <label for="" class="form-admin__label">OUT:
-            <input class="form-admin__input" type="text" name="user" value="<?=$value['out']?>">
+            <input class="form-admin__input" type="text" name="out" value="<?=$value['out']?>">
         </label>
 
         <label for="" class="form-admin__label">key:
@@ -139,11 +152,17 @@ if (isset($_POST['editKeyName'])) {
             <span class="form-admin__text">master</span>
         <?php else: ?>
             <label for="" class="form-admin__label">admin:
-                <input class="form-admin__input" type="checkbox" name="admin">
+                <input class="form-admin__input"
+                    type="checkbox"
+                    name="admin"
+                    <?=$value['admin'] ? "checked" : ""?>
+                >
             </label>
 
             <button class="form-admin__btn" name="deleteKey">удалить</button>
         <?php endif; ?>
+
+        <button class="form-admin__btn" name="editKey">изменить</button>
     </form>
 <?php endforeach; ?>
 

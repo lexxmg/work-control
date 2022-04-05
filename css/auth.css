@@ -2,6 +2,16 @@
 
 }
 
+.auth__text {
+  padding: 20px 10px;
+
+  font-size: 18px;
+}
+
+.auth__link {
+  color: tomato;
+}
+
 .auth-form {
   width: 300px;
 
