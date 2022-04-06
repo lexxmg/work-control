@@ -222,3 +222,7 @@
 .form-admin__btn {
 
 }
+
+.admin-access-card__body--hidden {
+  display: none;
+}

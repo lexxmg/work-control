@@ -183,62 +183,64 @@ if (isset($_POST['refresh'])) {
 
 <h2 class="admin-subtitle">Доступ разрешон</h2>
 
-<?php foreach ($arrAccessKey as $key => $value): ?>
-    <div class="admin-access-card">
-        <div class="admin-access-card__top">
-            <h3 class="admin-access-card__title"><?=$value['user']?></h3>
+<div class="admin-access-card-container">
+    <?php foreach ($arrAccessKey as $key => $value): ?>
+        <div class="admin-access-card">
+            <div class="admin-access-card__top">
+                <h3 class="admin-access-card__title"><?=$value['user']?></h3>
 
-            <div class="admin-access-card__top-btn-container admin-access-card-top-btn-container">
-                <button class="admin-access-card-top-btn-container__btn">x</button>
+                <div class="admin-access-card__top-btn-container admin-access-card-top-btn-container">
+                    <button class="admin-access-card-top-btn-container__btn" data-btn="btn">x</button>
+                </div>
+            </div>
+
+            <div class="admin-access-card__body admin-access-card__body--hidden">
+                <form class="form-admin" method="post">
+                    <input hidden type="text" name="id" value="<?=$value['id']?>">
+
+                    <label  class="form-admin__label">Имя:
+                        <input class="form-admin__input" type="text" name="user" value="<?=$value['user']?>">
+                    </label>
+
+                    <label  class="form-admin__label">OUT:
+                        <input class="form-admin__input" type="text" name="out" value="<?=$value['out']?>">
+                    </label>
+
+                    <label  class="form-admin__label">key:
+                        <input class="form-admin__input"
+                            disabled
+                            type="<?=$first || !$value['first'] ? 'text' : 'password'?>"
+                            name="key"
+                            value="<?=$value['key']?>
+                        ">
+                    </label>
+
+
+                    <?php if ($value['first']): ?>
+                        <span class="form-admin__text">master</span>
+                    <?php else: ?>
+                        <label class="form-admin__label form-admin__label--admin">admin:
+                            <input class="form-admin__input"
+                                type="checkbox"
+                                name="admin"
+                                <?=$value['admin'] ? "checked" : ""?>
+                            >
+                        </label>
+                    <?php endif; ?>
+
+                    <div class="form-admin__btn-container">
+                        <?php if (!$value['first']): ?>
+                            <button class="form-admin__btn" name="deleteKey">удалить</button>
+                        <?php endif; ?>
+
+                        <?php if ($first || !$value['first']): ?>
+                            <button class="form-admin__btn" name="editKey">изменить</button>
+                        <?php endif; ?>
+                    </div>
+                </form>
             </div>
         </div>
-
-        <div class="admin-access-card__body">
-            <form class="form-admin" method="post">
-                <input hidden type="text" name="id" value="<?=$value['id']?>">
-
-                <label  class="form-admin__label">Имя:
-                    <input class="form-admin__input" type="text" name="user" value="<?=$value['user']?>">
-                </label>
-
-                <label  class="form-admin__label">OUT:
-                    <input class="form-admin__input" type="text" name="out" value="<?=$value['out']?>">
-                </label>
-
-                <label  class="form-admin__label">key:
-                    <input class="form-admin__input"
-                        disabled
-                        type="<?=$first || !$value['first'] ? 'text' : 'password'?>"
-                        name="key"
-                        value="<?=$value['key']?>
-                    ">
-                </label>
-
-
-                <?php if ($value['first']): ?>
-                    <span class="form-admin__text">master</span>
-                <?php else: ?>
-                    <label class="form-admin__label form-admin__label--admin">admin:
-                        <input class="form-admin__input"
-                            type="checkbox"
-                            name="admin"
-                            <?=$value['admin'] ? "checked" : ""?>
-                        >
-                    </label>
-                <?php endif; ?>
-
-                <div class="form-admin__btn-container">
-                    <?php if (!$value['first']): ?>
-                        <button class="form-admin__btn" name="deleteKey">удалить</button>
-                    <?php endif; ?>
-
-                    <?php if ($first || !$value['first']): ?>
-                        <button class="form-admin__btn" name="editKey">изменить</button>
-                    <?php endif; ?>
-                </div>
-            </form>
-        </div>
-    </div>
-<?php endforeach; ?>
+    <?php endforeach; ?>
+</div>
 
 <? require $_SERVER['DOCUMENT_ROOT'] . '/templates/footer.php'?>

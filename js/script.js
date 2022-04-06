@@ -41,6 +41,19 @@ if (window.location.pathname === '/route/auth/') {
   });
 }
 
+if (window.location.pathname === '/route/admin/') {
+  const container = document.querySelector('.admin-access-card-container');
+
+  container.addEventListener('click', event => {
+    if (event.target.dataset.btn === 'btn') {
+      const card = event.target.closest('.admin-access-card');
+      const body = card.querySelector('.admin-access-card__body');
+
+      body.classList.toggle('admin-access-card__body--hidden');
+    }
+  });
+}
+
 
 function addBtnToContainer(container, outArr, outName) {
   if (outArr.length <= 1) {
