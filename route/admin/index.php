@@ -80,11 +80,11 @@ if (isset($_POST['editKeyName'])) {
 }
 
 if (isset($_POST['refresh'])) {
-    $newKey = $_POST['key'];
+    $newKey = explode(':', $_POST['key']);
 
     foreach ($arrAccessKey as $key => $value) {
-        if ($value['id'] == $_POST['id']) {
-            $arrAccessKey[$key]['key'] = $newKey;
+        if ($value['id'] == $newKey[0]) {
+            $arrAccessKey[$key]['key'] = $newKey[1];
             break;
         }
     }
@@ -158,19 +158,16 @@ if (isset($_POST['refresh'])) {
                         </div>
                     </form>
 
-                    <?php $userRefrech = []?>
                     <form class="admin-adding-card__form admin-adding-card-form-refresh" method="post">
                         <label class="admin-adding-card-form-refresh__label">Обновить ключ у пользователя:
                             <select class="admin-adding-card-form-refresh__select" name="key">
                                 <?php foreach ($arrAccessKey as $key => $userRefrech): ?>
                                     <option class="admin-adding-card-form-refresh__option"
-                                        value="<?=$value['key']?>"
+                                        value="<?=$userRefrech['id']?>:<?=$value['key']?>"
                                     ><?=$userRefrech['user']?></option>
                                 <?php endforeach; ?>
                             </select>
                         </label>
-
-                        <input hidden type="text" name="id" value="<?=$userRefrech['id']?>">
 
                         <div class="admin-adding-card-form-refresh__btn-container">
                             <button class="admin-adding-card-form-refresh__btn" name="refresh">Обновить</button>
@@ -198,16 +195,17 @@ if (isset($_POST['refresh'])) {
             <form class="form-admin" method="post">
                 <input hidden type="text" name="id" value="<?=$value['id']?>">
 
-                <label for="" class="form-admin__label">Имя:
+                <label  class="form-admin__label">Имя:
                     <input class="form-admin__input" type="text" name="user" value="<?=$value['user']?>">
                 </label>
 
-                <label for="" class="form-admin__label">OUT:
+                <label  class="form-admin__label">OUT:
                     <input class="form-admin__input" type="text" name="out" value="<?=$value['out']?>">
                 </label>
 
-                <label for="" class="form-admin__label">key:
+                <label  class="form-admin__label">key:
                     <input class="form-admin__input"
+                        disabled
                         type="<?=$first || !$value['first'] ? 'text' : 'password'?>"
                         name="key"
                         value="<?=$value['key']?>
