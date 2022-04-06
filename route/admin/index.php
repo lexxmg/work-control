@@ -37,11 +37,13 @@ if (isset($_POST['deleteKey'])) {
 
 if (isset($_POST['editKey'])) {
     $out = $_POST['out'];
+    $user = $_POST['user'];
     $admin = isset($_POST['admin']);
 
     foreach ($arrAccessKey as $key => $value) {
         if ($value['id'] == $_POST['id']) {
             $arrAccessKey[$key]['out'] = $out;
+            $arrAccessKey[$key]['user'] = $user;
             $arrAccessKey[$key]['admin'] = $admin;
             break;
         }
