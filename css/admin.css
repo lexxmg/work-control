@@ -61,7 +61,94 @@
   color: white;
 }
 
+.admin-adding-card {
+  width: 340px;
 
+  margin: 10px auto;
+
+  padding: 5px;
+
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.admin-adding-card__top {
+
+}
+
+.admin-adding-card__subtitle {
+
+}
+
+.admin-adding-card__body {
+
+}
+
+.admin-adding-card__form-container {
+  margin: 10px 0 0 0;
+  padding: 5px;
+
+  border: 1px solid black;
+}
+
+.admin-adding-card__form {
+
+}
+
+.admin-adding-card-form {
+
+}
+
+.admin-adding-card-form__time {
+  display: block;
+
+  margin: 5px;
+
+  text-align: center;
+}
+
+.admin-adding-card-form__label {
+  display: flex;
+  justify-content: space-between;
+
+  margin: 0 0 5px 0;
+}
+
+.admin-adding-card-form__input {
+  width: 160px;
+}
+
+.admin-adding-card-form__btn-container {
+  margin: 10px 0 20px 0;
+}
+
+.admin-adding-card-form__btn {
+
+}
+
+.admin-adding-card-form-refresh {
+
+}
+
+.admin-adding-card-form-refresh__label {
+
+}
+
+.admin-adding-card-form-refresh__select {
+
+}
+
+.admin-adding-card-form-refresh__option {
+
+}
+
+.admin-adding-card-form-refresh__btn-container {
+
+}
+
+.admin-adding-card-form-refresh__btn {
+
+}
 
 
 .admin-access-card {
@@ -111,13 +198,18 @@
   margin: 3px 0 0 0;
 }
 
+.form-admin__label--admin {
+   justify-content: flex-start;
+}
+
 .form-admin__input {
   margin: 0 90px 0 0;
 }
 
-.form-admin__input[type="checkbox"]{
-  margin: 0 190px 0 0;
+.form-admin__label.form-admin__label--admin .form-admin__input {
+  margin: 0 0 0 10px;
 }
+
 
 .form-admin__text {
 

@@ -79,6 +79,19 @@ if (isset($_POST['editKeyName'])) {
     $outName = json_decode(file_get_contents($pathOutName), true);
 }
 
+if (isset($_POST['refresh'])) {
+    $newKey = $_POST['key'];
+
+    foreach ($arrAccessKey as $key => $value) {
+        if ($value['id'] == $_POST['id']) {
+            $arrAccessKey[$key]['key'] = $newKey;
+            break;
+        }
+    }
+
+    file_put_contents( $pathAccessKey, json_encode(array_values($arrAccessKey), JSON_UNESCAPED_UNICODE) );
+}
+
 ?>
 <a href="/" class="admin__link">Главная</a>
 
@@ -114,27 +127,60 @@ if (isset($_POST['editKeyName'])) {
     <button class="admin-form-out-name__btn" name="editKeyName">Изменить</button>
 </form>
 
-<h2 class="admin-subtitle">Запрос на добавление</h2>
+<?php if (!empty($reguestArr)): ?>
+    <div class="admin-adding-card">
+        <div class="admin-adding-card__top">
+            <h2 class="admin-adding-card__subtitle">Запрос на добавление</h2>
+        </div>
 
-<?php foreach ($reguestArr as $key => $value): ?>
-    <form class="form-admin" method="post">
-        <label for="" class="form-admin__label">Введите имя:
-            <input class="form-admin__input" type="text" name="user">
-        </label>
+        <div class="admin-adding-card__body">
+            <?php foreach ($reguestArr as $key => $value): ?>
+                <div class="admin-adding-card__form-container">
+                    <form class="admin-adding-card__form admin-adding-card-form" method="post">
+                        <time class="admin-adding-card-form__time"><?=$value['date']?></time>
 
-        <label for="" class="form-admin__label">OUT через запятую:
-            <input class="form-admin__input" type="text" name="out">
-        </label>
+                        <label class="admin-adding-card-form__label">Введите имя:
+                            <input class="admin-adding-card-form__input" type="text" name="user">
+                        </label>
 
-        <label for="" class="form-admin__label">key:
-            <input class="form-admin__input" type="text" name="key" value="<?=$value['key']?>">
-        </label>
+                        <label class="admin-adding-card-form__label">OUT через запятую:
+                            <input class="admin-adding-card-form__input" type="text" name="out">
+                        </label>
 
-        <button class="form-admin__btn" name="addKey">добавить</button>
+                        <label  class="admin-adding-card-form__label">key:
+                            <input class="admin-adding-card-form__input" type="text" name="key" value="<?=$value['key']?>">
+                        </label>
 
-        <button class="form-admin__btn" name="reject">отклонить</button>
-    </form>
-<?php endforeach; ?>
+                        <div class="admin-adding-card-form__btn-container">
+                            <button class="admin-adding-card-form__btn" name="addKey">добавить</button>
+
+                            <button class="admin-adding-card-form__btn" name="reject">отклонить</button>
+                        </div>
+                    </form>
+
+                    <?php $userRefrech = []?>
+                    <form class="admin-adding-card__form admin-adding-card-form-refresh" method="post">
+                        <label class="admin-adding-card-form-refresh__label">Обновить ключ у пользователя:
+                            <select class="admin-adding-card-form-refresh__select" name="key">
+                                <?php foreach ($arrAccessKey as $key => $userRefrech): ?>
+                                    <option class="admin-adding-card-form-refresh__option"
+                                        value="<?=$value['key']?>"
+                                    ><?=$userRefrech['user']?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </label>
+
+                        <input hidden type="text" name="id" value="<?=$userRefrech['id']?>">
+
+                        <div class="admin-adding-card-form-refresh__btn-container">
+                            <button class="admin-adding-card-form-refresh__btn" name="refresh">Обновить</button>
+                        </div>
+                    </form>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+<?php endif; ?>
 
 <h2 class="admin-subtitle">Доступ разрешон</h2>
 
@@ -172,7 +218,7 @@ if (isset($_POST['editKeyName'])) {
                 <?php if ($value['first']): ?>
                     <span class="form-admin__text">master</span>
                 <?php else: ?>
-                    <label class="form-admin__label">admin:
+                    <label class="form-admin__label form-admin__label--admin">admin:
                         <input class="form-admin__input"
                             type="checkbox"
                             name="admin"
