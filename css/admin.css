@@ -176,11 +176,31 @@
 }
 
 .admin-access-card-top-btn-container {
-
+  display: flex;
+  align-items: center;
 }
 
 .admin-access-card-top-btn-container__btn {
+  display: block;
 
+  width: 20px;
+  height: 20px;
+
+  padding: 0;
+
+  background: none;
+
+  border: none;
+
+  color: black;
+
+  transition: transform .4s;
+}
+
+.admin-access-card-top-btn-container__btn--open {
+  transform: rotate(90deg);
+
+  transition: transform .3s;
 }
 
 .admin-access-card__body {
@@ -224,5 +244,17 @@
 }
 
 .admin-access-card__body--hidden {
-  display: none;
+  overflow: hidden;
+
+  height: 0;
+
+  transition: height .4s;
+}
+
+.admin-access-card__body--show {
+  overflow: hidden;
+
+  height: 100%;
+
+  transition: height .4s;
 }

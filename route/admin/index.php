@@ -186,15 +186,20 @@ if (isset($_POST['refresh'])) {
 <div class="admin-access-card-container">
     <?php foreach ($arrAccessKey as $key => $value): ?>
         <div class="admin-access-card">
-            <div class="admin-access-card__top">
-                <h3 class="admin-access-card__title"><?=$value['user']?></h3>
+            <div class="admin-access-card__top" data-btn="top">
+                <h3 class="admin-access-card__title" data-btn="title"><?=$value['user']?></h3>
 
                 <div class="admin-access-card__top-btn-container admin-access-card-top-btn-container">
-                    <button class="admin-access-card-top-btn-container__btn" data-btn="btn">x</button>
+                    <button class="admin-access-card-top-btn-container__btn"
+                      data-btn="btn"
+                      aria-label="карточка"
+                      aria-expanded="false"
+									    aria-controls="card"
+                    >></button>
                 </div>
             </div>
 
-            <div class="admin-access-card__body admin-access-card__body--hidden">
+            <div class="admin-access-card__body admin-access-card__body--hidden" id="card" data-btn="card">
                 <form class="form-admin" method="post">
                     <input hidden type="text" name="id" value="<?=$value['id']?>">
 
