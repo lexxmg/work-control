@@ -35,8 +35,10 @@ if (window.location.pathname === '/') {
 
 if (window.location.pathname === '/route/auth/') {
   const btn = document.querySelector('.auth__btn');
+  const form = document.querySelector('.auth-form');
 
   btn.addEventListener('click', () => {
+    form.reset();
     window.location.reload();
   });
 }
