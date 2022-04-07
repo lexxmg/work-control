@@ -21,6 +21,8 @@
 }
 
 .admin-form-out-name-table {
+  width: 100%;
+
   border: 1px solid black;
   border-radius: 10px;
 }
@@ -258,7 +260,7 @@
 .admin-access-card__body--show {
   overflow: hidden;
 
-  height: 139px;
+  height: 165px;
 
   transition: height .4s;
 }
