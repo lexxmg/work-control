@@ -204,7 +204,11 @@
 }
 
 .admin-access-card__body {
+  overflow: hidden;
 
+  height: 0;
+
+  transition: height .4s;
 }
 
 .form-admin {
@@ -254,7 +258,7 @@
 .admin-access-card__body--show {
   overflow: hidden;
 
-  height: 100%;
+  height: 139px;
 
   transition: height .4s;
 }

@@ -45,7 +45,6 @@ if (window.location.pathname === '/route/auth/') {
 
 if (window.location.pathname === '/route/admin/') {
   const container = document.querySelector('.admin-access-card-container');
-  const btn = container.querySelector('.admin-access-card-top-btn-container__btn');
 
   container.addEventListener('click', event => {
     const datasetBtn = event.target.dataset.btn;
@@ -53,17 +52,14 @@ if (window.location.pathname === '/route/admin/') {
     if (datasetBtn === 'btn' || datasetBtn === 'top' || datasetBtn === 'title') {
       const card = event.target.closest('.admin-access-card');
       const body = card.querySelector('.admin-access-card__body');
-
-      //body.classList.toggle('admin-access-card__body--hidden');
+      const btn = card.querySelector('.admin-access-card-top-btn-container__btn');
 
       if (btn.ariaExpanded === 'true') {
-        body.classList.add('admin-access-card__body--hidden');
         body.classList.remove('admin-access-card__body--show');
 
         btn.classList.remove('admin-access-card-top-btn-container__btn--open');
         btn.ariaExpanded = 'false';
       } else {
-        body.classList.remove('admin-access-card__body--hidden');
         body.classList.add('admin-access-card__body--show');
 
         btn.classList.add('admin-access-card-top-btn-container__btn--open');

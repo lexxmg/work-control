@@ -199,7 +199,7 @@ if (isset($_POST['refresh'])) {
                 </div>
             </div>
 
-            <div class="admin-access-card__body admin-access-card__body--hidden" id="card" data-btn="card">
+            <div class="admin-access-card__body" id="card" data-btn="card">
                 <form class="form-admin" method="post">
                     <input hidden type="text" name="id" value="<?=$value['id']?>">
 
