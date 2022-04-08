@@ -194,12 +194,12 @@ if (isset($_POST['refresh'])) {
                       data-btn="btn"
                       aria-label="карточка"
                       aria-expanded="false"
-									    aria-controls="card"
+					  aria-controls="<?=$value['id']?>"
                     >></button>
                 </div>
             </div>
 
-            <div class="admin-access-card__body" id="card" data-btn="card">
+            <div class="admin-access-card__body" id="<?=$value['id']?>" data-btn="card">
                 <form class="form-admin" method="post">
                     <input hidden type="text" name="id" value="<?=$value['id']?>">
 
