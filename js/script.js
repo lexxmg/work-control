@@ -55,12 +55,58 @@ if (window.location.pathname === '/route/admin/') {
       const btn = card.querySelector('.admin-access-card-top-btn-container__btn');
 
       if (btn.ariaExpanded === 'true') {
-        body.classList.remove('admin-access-card__body--show');
+        //body.classList.remove('admin-access-card__body--show');
+
+        const bodyHeight = body.clientHeight;
+
+        body.style.overflow = 'hidden';
+
+        animate({
+          duration: 400,
+          timing(timeFraction) {
+            return timeFraction;
+          },
+          draw(progress) {
+            body.style.height = (bodyHeight - bodyHeight * progress) + 'px';
+            if (progress === 1) {
+              //console.log('end fbimation');
+              body.style.display = 'none';
+              body.style.height = '';
+              body.style.overflow = '';
+            }
+          }
+        });
 
         btn.classList.remove('admin-access-card-top-btn-container__btn--open');
         btn.ariaExpanded = 'false';
       } else {
-        body.classList.add('admin-access-card__body--show');
+        //body.classList.add('admin-access-card__body--show');
+
+        body.style.position = 'absolute';
+        body.style.visibility = 'hidden';
+        body.style.display = 'block';
+
+        const bodyHeight = body.clientHeight;
+
+        body.style.overflow = 'hidden';
+        body.style.height = 0;
+        body.style.position = '';
+        body.style.visibility = '';
+
+        animate({
+          duration: 400,
+          timing(timeFraction) {
+            return timeFraction;
+          },
+          draw(progress) {
+            body.style.height = (bodyHeight * progress) + 'px';
+            if (progress === 1) {
+              //console.log('end fbimation');
+              body.style.overflow = '';
+            }
+          }
+        });
+        
 
         btn.classList.add('admin-access-card-top-btn-container__btn--open');
         btn.ariaExpanded = 'true';
@@ -118,4 +164,25 @@ function isActive(ip, outName) {
         });
       });
     });
+}
+
+function animate({timing, draw, duration}) {
+
+  let start = performance.now();
+
+  requestAnimationFrame(function animate(time) {
+    // timeFraction изменяется от 0 до 1
+    let timeFraction = (time - start) / duration;
+    if (timeFraction > 1) timeFraction = 1;
+
+    // вычисление текущего состояния анимации
+    let progress = timing(timeFraction);
+
+    draw(progress); // отрисовать её
+
+    if (timeFraction < 1) {
+      requestAnimationFrame(animate);
+    }
+
+  });
 }

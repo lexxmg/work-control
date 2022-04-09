@@ -202,15 +202,11 @@
 .admin-access-card-top-btn-container__btn--open {
   transform: rotate(90deg);
 
-  transition: transform .3s;
+  transition: transform .4s;
 }
 
 .admin-access-card__body {
-  overflow: hidden;
-
-  height: 0;
-
-  transition: height .4s;
+  display: none;
 }
 
 .form-admin {
