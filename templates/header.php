@@ -20,6 +20,7 @@
 
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/master.css">
+    <link rel="stylesheet" href="/css/buttons.css">
     <link rel="stylesheet" href="/css/control.css">
     <link rel="stylesheet" href="/css/auth.css">
     <link rel="stylesheet" href="/css/admin.css">

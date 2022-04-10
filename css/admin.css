@@ -1,3 +1,21 @@
+.admin-title__container {
+  position: relative;
+
+  width: 340px;
+
+  margin: 0 auto;
+}
+
+.admin-title-container {
+
+}
+
+.admin-title-container__btn {
+  position: absolute;
+  top: calc(50% - 10px);
+  right: 5px;
+}
+
 .admin__link {
 
 }
@@ -7,7 +25,9 @@
 }
 
 .admin__form-out-name {
-  width: 330px;
+  display: none;
+
+  width: 340px;
 
   margin: 10px auto;
 }
@@ -183,26 +203,7 @@
 }
 
 .admin-access-card-top-btn-container__btn {
-  display: block;
 
-  width: 20px;
-  height: 20px;
-
-  padding: 0;
-
-  background: none;
-
-  border: none;
-
-  color: black;
-
-  transition: transform .4s;
-}
-
-.admin-access-card-top-btn-container__btn--open {
-  transform: rotate(90deg);
-
-  transition: transform .4s;
 }
 
 .admin-access-card__body {

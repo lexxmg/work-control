@@ -1,0 +1,24 @@
+
+
+.btn-arrow {
+  display: block;
+
+  width: 20px;
+  height: 20px;
+
+  padding: 0;
+
+  background: none;
+
+  border: none;
+
+  color: black;
+
+  transition: transform .4s;
+}
+
+.btn-arrow--open {
+  transform: rotate(90deg);
+
+  transition: transform .4s;
+}

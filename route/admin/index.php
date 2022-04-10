@@ -97,9 +97,18 @@ if (isset($_POST['refresh'])) {
 ?>
 <a href="/" class="admin__link">Главная</a>
 
-<h2 class="admin-subtitle">Название выходов</h2>
+<div class="admin-title__container admin-title-container">
+    <h2 class="admin-subtitle">Название выходов</h2>
 
-<form class="admin__form-out-name admin-form-out-name" method="post">
+    <button class="admin-title-container__btn btn-arrow"
+    aria-label="развернуть"
+    aria-expanded="false"
+    aria-controls="nameList"
+    >>
+    </button>
+</div>
+
+<form class="admin__form-out-name admin-form-out-name" id="nameList" method="post">
     <table class="admin-form-out-name__table admin-form-out-name-table">
         <tr class="admin-form-out-name-table__tr">
             <th class="admin-form-out-name-table__th">Выход</th>
@@ -190,7 +199,7 @@ if (isset($_POST['refresh'])) {
                 <h3 class="admin-access-card__title" data-btn="title"><?=$value['user']?></h3>
 
                 <div class="admin-access-card__top-btn-container admin-access-card-top-btn-container">
-                    <button class="admin-access-card-top-btn-container__btn"
+                    <button class="admin-access-card-top-btn-container__btn btn-arrow"
                       data-btn="btn"
                       aria-label="карточка"
                       aria-expanded="false"

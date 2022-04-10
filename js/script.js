@@ -45,6 +45,64 @@ if (window.location.pathname === '/route/auth/') {
 
 if (window.location.pathname === '/route/admin/') {
   const container = document.querySelector('.admin-access-card-container');
+  const btnNameListContainer = document.querySelector('.admin-title__container');
+  const btnNameList = document.querySelector('.admin-title-container__btn');
+  const nameList = document.querySelector('.admin__form-out-name');
+
+  btnNameListContainer.addEventListener('click', () => {
+    if (btnNameList.ariaExpanded === 'true') {
+      const nameListHeight = nameList.clientHeight;
+
+      nameList.style.overflow = 'hidden';
+
+      animate({
+        duration: 400,
+        timing(timeFraction) {
+          return timeFraction;
+        },
+        draw(progress) {
+          nameList.style.height = (nameListHeight - nameListHeight * progress) + 'px';
+          if (progress === 1) {
+            //console.log('end fbimation');
+            nameList.style.display = 'none';
+            nameList.style.height = '';
+            nameList.style.overflow = '';
+          }
+        }
+      });
+
+      btnNameList.classList.remove('btn-arrow--open');
+      btnNameList.ariaExpanded = 'false';
+    } else {
+      nameList.style.position = 'absolute';
+      nameList.style.visibility = 'hidden';
+      nameList.style.display = 'block';
+
+      const nameListHeight = nameList.clientHeight;
+
+      nameList.style.overflow = 'hidden';
+      nameList.style.height = 0;
+      nameList.style.position = '';
+      nameList.style.visibility = '';
+
+      animate({
+        duration: 400,
+        timing(timeFraction) {
+          return timeFraction;
+        },
+        draw(progress) {
+          nameList.style.height = (nameListHeight * progress) + 'px';
+          if (progress === 1) {
+            //console.log('end fbimation');
+            nameList.style.overflow = '';
+          }
+        }
+      });
+
+      btnNameList.classList.add('btn-arrow--open');
+      btnNameList.ariaExpanded = 'true';
+    }
+  });
 
   container.addEventListener('click', event => {
     const datasetBtn = event.target.dataset.btn;
@@ -55,8 +113,6 @@ if (window.location.pathname === '/route/admin/') {
       const btn = card.querySelector('.admin-access-card-top-btn-container__btn');
 
       if (btn.ariaExpanded === 'true') {
-        //body.classList.remove('admin-access-card__body--show');
-
         const bodyHeight = body.clientHeight;
 
         body.style.overflow = 'hidden';
@@ -77,11 +133,9 @@ if (window.location.pathname === '/route/admin/') {
           }
         });
 
-        btn.classList.remove('admin-access-card-top-btn-container__btn--open');
+        btn.classList.remove('btn-arrow--open');
         btn.ariaExpanded = 'false';
       } else {
-        //body.classList.add('admin-access-card__body--show');
-
         body.style.position = 'absolute';
         body.style.visibility = 'hidden';
         body.style.display = 'block';
@@ -106,9 +160,9 @@ if (window.location.pathname === '/route/admin/') {
             }
           }
         });
-        
 
-        btn.classList.add('admin-access-card-top-btn-container__btn--open');
+
+        btn.classList.add('btn-arrow--open');
         btn.ariaExpanded = 'true';
       }
     }
